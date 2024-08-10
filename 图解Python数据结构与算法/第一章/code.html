@@ -27,22 +27,7 @@
         pre {
             white-space: pre-wrap; /* 保证内容换行 */
             text-align: left; /* 代码左对齐 */
-        }
-        .code-container {
-            position: relative;
-        }
-        .download-link {
-            position: absolute;
-            top: 0;
-            right: 0;
-            padding: 5px 10px;
-            background-color: #007bff;
-            color: #ffffff;
-            border-radius: 5px;
-            text-decoration: none;
-        }
-        .download-link:hover {
-            background-color: #0056b3;
+            overflow-x: auto; /* 横向滚动 */
         }
     </style>
 </head>
@@ -59,10 +44,7 @@
             <!-- Right Column (2/3 of the page) -->
             <div class="col-8 right-column">
                 <h2 class="text-center">代码</h2>
-                <div class="code-container">
-                    <pre id="file-content" class="hljs">请选择左侧的文件以查看内容。</pre>
-                    <a id="download-link" href="#" class="download-link" download>下载文件</a>
-                </div>
+                <pre id="file-content" class="hljs"><code>请选择左侧的文件以查看内容。</code></pre>
             </div>
         </div>
     </div>
@@ -76,7 +58,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             const fileListElement = document.getElementById('file-list');
             const fileContentElement = document.getElementById('file-content');
-            const downloadLinkElement = document.getElementById('download-link');
+            const codeElement = fileContentElement.querySelector('code');
             const repo = 'Felinus-Lee.github.io';
             const path = '图解Python数据结构与算法/第一章';
             const apiUrl = `https://api.github.com/repos/Felinus-Lee/${repo}/contents/${path}`;
@@ -94,23 +76,9 @@
                                 fetch(file.download_url)
                                     .then(response => response.text())
                                     .then(content => {
-                                        fileContentElement.textContent = content;
-                                        hljs.highlightElement(fileContentElement); // 确保高亮显示
-
-                                        // 创建 Blob 对象
-                                        const baseName = file.name.replace(/\.[^/.]+$/, ''); // 去掉扩展名
-                                        const extension = file.name.split('.').pop(); // 获取扩展名
-                                        const blob = new Blob([content], { type: 'text/plain' });
-
-                                        // 创建下载链接
-                                        const url = URL.createObjectURL(blob);
-                                        downloadLinkElement.href = url;
-                                        downloadLinkElement.download = `${baseName}.${extension}`; // 设置下载的文件名和扩展名
-
-                                        // 确保 Blob URL 被正确释放
-                                        downloadLinkElement.addEventListener('click', () => {
-                                            setTimeout(() => URL.revokeObjectURL(url), 1000);
-                                        });
+                                        // 显示代码并应用高亮
+                                        codeElement.textContent = content;
+                                        hljs.highlightBlock(codeElement); // 使用 highlightBlock 而不是 highlightElement
                                     });
                             });
                             fileListElement.appendChild(li);
