@@ -1,0 +1,44 @@
+Input sequence: [0 0 0 0 7], Target: 8
+Input sequence: [0 0 0 7 8], Target: 9
+Input sequence: [0 0 7 8 9], Target: 10
+Input sequence: [ 0  7  8  9 10], Target: 11
+Input sequence: [ 7  8  9 10 11], Target: 1
+Input sequence: [ 8  9 10 11  1], Target: 3
+Input sequence: [ 9 10 11  1  3], Target: 3
+Input sequence: [10 11  1  3  3], Target: 12
+Input sequence: [11  1  3  3 12], Target: 13
+Input sequence: [ 1  3  3 12 13], Target: 14
+Input sequence: [ 3  3 12 13 14], Target: 2
+Input sequence: [ 0  0  0  0 15], Target: 16
+Input sequence: [ 0  0  0 15 16], Target: 17
+Input sequence: [ 0  0 15 16 17], Target: 18
+Input sequence: [ 0 15 16 17 18], Target: 19
+Input sequence: [15 16 17 18 19], Target: 1
+Input sequence: [16 17 18 19  1], Target: 20
+Input sequence: [17 18 19  1 20], Target: 21
+Input sequence: [18 19  1 20 21], Target: 22
+Input sequence: [19  1 20 21 22], Target: 23
+Input sequence: [ 1 20 21 22 23], Target: 24
+Input sequence: [20 21 22 23 24], Target: 2
+Input sequence: [ 0  0  0  0 25], Target: 26
+Input sequence: [ 0  0  0 25 26], Target: 4
+Input sequence: [ 0  0 25 26  4], Target: 5
+Input sequence: [ 0 25 26  4  5], Target: 27
+Input sequence: [25 26  4  5 27], Target: 1
+Input sequence: [26  4  5 27  1], Target: 28
+Input sequence: [ 4  5 27  1 28], Target: 29
+Input sequence: [ 5 27  1 28 29], Target: 30
+Input sequence: [27  1 28 29 30], Target: 31
+Input sequence: [ 1 28 29 30 31], Target: 32
+Input sequence: [28 29 30 31 32], Target: 2
+Input sequence: [ 0  0  0  0 33], Target: 6
+Input sequence: [ 0  0  0 33  6], Target: 34
+Input sequence: [ 0  0 33  6 34], Target: 4
+Input sequence: [ 0 33  6 34  4], Target: 5
+Input sequence: [33  6 34  4  5], Target: 1
+Input sequence: [ 6 34  4  5  1], Target: 35
+Input sequence: [34  4  5  1 35], Target: 6
+Input sequence: [ 4  5  1 35  6], Target: 36
+Input sequence: [ 5  1 35  6 36], Target: 37
+Input sequence: [ 1 35  6 36 37], Target: 38
+Input sequence: [35  6 36 37 38], Target: 2

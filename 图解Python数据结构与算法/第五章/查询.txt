@@ -1,0 +1,9 @@
+Generated Cypher:
+MATCH (a:Artifact)-[:BELONGS_TO]->(m:Museum)
+WHERE a.purpose = '装饰品'
+RETURN a.name
+Full Context:
+[{'a.name': '白陶斗笠形器'}, {'a.name': '骨猴'}]
+
+> Finished chain.
+白陶斗笠形器和骨猴都是功能是装饰品的文物。
