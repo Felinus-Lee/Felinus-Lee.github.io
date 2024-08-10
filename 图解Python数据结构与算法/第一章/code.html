@@ -12,6 +12,7 @@
         .left-column {
             background-color: #add8e6; /* 淡蓝色 */
             min-height: 100vh; /* 确保占满整个视口高度 */
+            padding: 20px;
         }
         .right-column {
             background-color: #ffffff; /* 白色 */
@@ -78,7 +79,7 @@
                                     .then(content => {
                                         // 显示代码并应用高亮
                                         codeElement.textContent = content;
-                                        hljs.highlightBlock(codeElement); // 使用 highlightBlock 而不是 highlightElement
+                                        hljs.highlightBlock(codeElement);
                                     });
                             });
                             fileListElement.appendChild(li);
