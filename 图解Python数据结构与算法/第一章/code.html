@@ -96,8 +96,16 @@
                                     .then(content => {
                                         fileContentElement.textContent = content;
                                         hljs.highlightElement(fileContentElement); // 确保在内容设置后调用高亮
+
+                                        // 修改下载链接的名字
+                                        let downloadName = file.name.replace(/\.py$/, '').replace(/\.ipynb$/, '');
+                                        if (file.name.endsWith('.py')) {
+                                            downloadName += '.py';
+                                        } else if (file.name.endsWith('.ipynb')) {
+                                            downloadName += '.ipynb';
+                                        }
                                         downloadLinkElement.href = file.download_url;
-                                        downloadLinkElement.download = file.name;
+                                        downloadLinkElement.download = downloadName;
                                     });
                             });
                             fileListElement.appendChild(li);
