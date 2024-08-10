@@ -98,14 +98,10 @@
                                         hljs.highlightElement(fileContentElement); // 确保高亮显示
 
                                         // 设置下载链接和文件名
-                                        let downloadName = file.name.replace(/\.py$/, '').replace(/\.ipynb$/, '');
-                                        if (file.name.endsWith('.py')) {
-                                            downloadName += '.py';
-                                        } else if (file.name.endsWith('.ipynb')) {
-                                            downloadName += '.ipynb';
-                                        }
+                                        const baseName = file.name.replace(/\.py$/, '').replace(/\.ipynb$/, '');
+                                        const extension = file.name.endsWith('.py') ? '.py' : '.ipynb';
                                         downloadLinkElement.href = file.download_url;
-                                        downloadLinkElement.download = downloadName;
+                                        downloadLinkElement.download = `${baseName}${extension}`;
                                     });
                             });
                             fileListElement.appendChild(li);
