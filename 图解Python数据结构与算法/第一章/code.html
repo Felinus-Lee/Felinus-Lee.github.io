@@ -27,6 +27,7 @@
         pre {
             white-space: pre-wrap; /* 保证内容换行 */
             text-align: left; /* 代码左对齐 */
+            overflow-x: auto; /* 横向滚动 */
         }
     </style>
 </head>
@@ -43,7 +44,7 @@
             <!-- Right Column (2/3 of the page) -->
             <div class="col-8 right-column">
                 <h2 class="text-center">代码</h2>
-                <pre id="file-content" class="hljs">请选择左侧的文件以查看内容。</pre>
+                <pre id="file-content" class="hljs"><code>请选择左侧的文件以查看内容。</code></pre>
             </div>
         </div>
     </div>
@@ -57,32 +58,8 @@
         document.addEventListener('DOMContentLoaded', () => {
             const fileListElement = document.getElementById('file-list');
             const fileContentElement = document.getElementById('file-content');
-            const repo = 'Felinus-Lee.github.io';
-            const path = '图解Python数据结构与算法/第一章';
-            const apiUrl = `https://api.github.com/repos/Felinus-Lee/${repo}/contents/${path}`;
-
-            // 获取文件列表
-            fetch(apiUrl)
-                .then(response => response.json())
-                .then(data => {
-                    data.forEach(file => {
-                        if (file.name.endsWith('.py') || file.name.endsWith('.ipynb')) {
-                            const li = document.createElement('li');
-                            li.className = 'list-group-item file-list';
-                            li.textContent = file.name;
-                            li.addEventListener('click', () => {
-                                fetch(file.download_url)
-                                    .then(response => response.text())
-                                    .then(content => {
-                                        fileContentElement.textContent = content;
-                                        hljs.highlightElement(fileContentElement); // 确保高亮显示
-                                    });
-                            });
-                            fileListElement.appendChild(li);
-                        }
-                    });
-                })
-                .catch(error => console.error('Error fetching file list:', error));
+            const codeElement = fileContentElement.querySelector('code');
+            // 这里的文件列表和内容显示功能已被删除
         });
     </script>
 </body>
