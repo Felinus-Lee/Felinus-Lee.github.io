@@ -59,7 +59,33 @@
             const fileListElement = document.getElementById('file-list');
             const fileContentElement = document.getElementById('file-content');
             const codeElement = fileContentElement.querySelector('code');
-            // 这里的文件列表和内容显示功能已被删除
+            const repo = 'Felinus-Lee.github.io';
+            const path = '图解Python数据结构与算法/第一章';
+            const apiUrl = `https://api.github.com/repos/Felinus-Lee/${repo}/contents/${path}`;
+
+            // 获取文件列表
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(file => {
+                        if (file.name.endsWith('.py') || file.name.endsWith('.ipynb')) {
+                            const li = document.createElement('li');
+                            li.className = 'list-group-item file-list';
+                            li.textContent = file.name;
+                            li.addEventListener('click', () => {
+                                fetch(file.download_url)
+                                    .then(response => response.text())
+                                    .then(content => {
+                                        // 显示代码并应用高亮
+                                        codeElement.textContent = content;
+                                        hljs.highlightBlock(codeElement); // 使用 highlightBlock 而不是 highlightElement
+                                    });
+                            });
+                            fileListElement.appendChild(li);
+                        }
+                    });
+                })
+                .catch(error => console.error('Error fetching file list:', error));
         });
     </script>
 </body>
