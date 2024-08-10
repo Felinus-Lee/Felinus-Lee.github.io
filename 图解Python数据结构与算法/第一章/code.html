@@ -97,12 +97,20 @@
                                         fileContentElement.textContent = content;
                                         hljs.highlightElement(fileContentElement); // 确保高亮显示
 
-                                        // 创建下载链接
+                                        // 创建 Blob 对象
                                         const baseName = file.name.replace(/\.[^/.]+$/, ''); // 去掉扩展名
                                         const extension = file.name.split('.').pop(); // 获取扩展名
-                                        const dataUrl = `data:text/plain;charset=utf-8,${encodeURIComponent(content)}`;
-                                        downloadLinkElement.href = dataUrl;
+                                        const blob = new Blob([content], { type: 'text/plain' });
+
+                                        // 创建下载链接
+                                        const url = URL.createObjectURL(blob);
+                                        downloadLinkElement.href = url;
                                         downloadLinkElement.download = `${baseName}.${extension}`; // 设置下载的文件名和扩展名
+
+                                        // 确保 Blob URL 被正确释放
+                                        downloadLinkElement.addEventListener('click', () => {
+                                            setTimeout(() => URL.revokeObjectURL(url), 1000);
+                                        });
                                     });
                             });
                             fileListElement.appendChild(li);
