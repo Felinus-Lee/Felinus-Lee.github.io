@@ -67,7 +67,7 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS and dependencies -->
+    <!-- jQuery and Bootstrap JS from CDN -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- Highlight.js JS from CDN -->
@@ -95,9 +95,9 @@
                                     .then(response => response.text())
                                     .then(content => {
                                         fileContentElement.textContent = content;
+                                        hljs.highlightElement(fileContentElement); // 确保在内容设置后调用高亮
                                         downloadLinkElement.href = file.download_url;
                                         downloadLinkElement.download = file.name;
-                                        hljs.highlightElement(fileContentElement);
                                     });
                             });
                             fileListElement.appendChild(li);
