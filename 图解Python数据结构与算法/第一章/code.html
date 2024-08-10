@@ -95,9 +95,9 @@
                                     .then(response => response.text())
                                     .then(content => {
                                         fileContentElement.textContent = content;
-                                        hljs.highlightElement(fileContentElement); // 确保在内容设置后调用高亮
+                                        hljs.highlightElement(fileContentElement); // 确保高亮显示
 
-                                        // 修改下载链接的名字
+                                        // 设置下载链接和文件名
                                         let downloadName = file.name.replace(/\.py$/, '').replace(/\.ipynb$/, '');
                                         if (file.name.endsWith('.py')) {
                                             downloadName += '.py';
